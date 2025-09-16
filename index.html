@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Congratulations!</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(-45deg, #0f172a, #1e293b, #334155, #111827);
+      background-size: 400% 400%;
+      animation: gradientShift 10s ease infinite;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 25px;
+      overflow-y: auto;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      max-width: 1000px;
+      width: 100%;
+      margin: 30px 0;
+      animation: fadeIn 2s ease-in-out;
+      padding: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Puzzle */
+    .photo {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+   .reveal {
+  position: relative;
+  width: 500px;
+  height: 450px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #111827;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+
+  /* Gradient border base */
+  border: 4px solid transparent;
+  background-image: linear-gradient(#111827, #111827),
+    linear-gradient(135deg, #ff4d6d, #fbbf24, #3b82f6, #ec4899);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+
+  /* Animated gradient frame */
+  animation: frameSpin 8s linear infinite;
+}
+
+/* Moving glowing gradient */
+@keyframes frameSpin {
+  0% {
+    background-image: linear-gradient(#111827, #111827),
+      linear-gradient(0deg, #ff4d6d, #fbbf24, #3b82f6, #ec4899);
+  }
+  100% {
+    background-image: linear-gradient(#111827, #111827),
+      linear-gradient(360deg, #ff4d6d, #fbbf24, #3b82f6, #ec4899);
+  }
+}
+
+.reveal::before {
+  top: 10px;
+  left: 10px;
+  border-right: none;
+  border-bottom: none;
+}
+.reveal::after {
+  bottom: 10px;
+  right: 10px;
+  border-left: none;
+  border-top: none;
+}
+
+.reveal::before {
+  top: 10px;
+  left: 10px;
+  border-right: none;
+  border-bottom: none;
+}
+.reveal::after {
+  bottom: 10px;
+  right: 10px;
+  border-left: none;
+  border-top: none;
+}
+
+@keyframes cornerGlow {
+  from { opacity: 0.6; transform: scale(1); }
+  to   { opacity: 1; transform: scale(1.2); }
+}
+    .tile {
+      position: absolute;
+      background-image: url("/images/pic.jpeg");
+      background-size: 450px 450px; /* match sa laki ng frame */
+      opacity: 0;
+      transform: translate(var(--x), var(--y)) scale(0.2) rotate(var(--r));
+      animation: assemble 1.3s forwards cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    @keyframes assemble {
+      100% { transform: translate(0,0) scale(1) rotate(0); opacity: 1; }
+    }
+
+    /* Content */
+    .content {
+      flex: 1;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      margin: 20px auto;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #fbbf24;
+      box-shadow: 0 0 20px rgba(251,191,36,0.6),
+                  0 0 40px rgba(251,191,36,0.4);
+      animation: logoPulse 3s infinite alternate ease-in-out;
+      transition: transform 0.4s ease;
+    }
+
+    .logo:hover { transform: scale(1.1) rotate(5deg); }
+
+    @keyframes logoPulse {
+      0% { box-shadow: 0 0 10px rgba(251,191,36,0.5), 0 0 20px rgba(251,191,36,0.3); }
+      100% { box-shadow: 0 0 30px rgba(251,191,36,0.9), 0 0 60px rgba(251,191,36,0.6); }
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: #fbbf24;
+      animation: textGlow 2s infinite alternate;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #facc15;
+      font-family: 'Playfair Display', serif;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #e2e8f0;
+    }
+
+    strong { color: #fbbf24; font-size: 1.3rem; }
+
+    .celebrate-btn {
+      display: inline-block;
+      width: 220px;
+      height: 50px;
+      line-height: 50px;
+      font-size: 18px;
+      font-family: 'Playfair Display', serif;
+      text-decoration: none;
+      color: #facc15;
+      border: 2px solid #facc15;
+      letter-spacing: 2px;
+      text-align: center;
+      position: relative;
+      transition: all .4s ease-in-out;
+      border-radius: 30px;
+      box-shadow: 0 0 10px rgba(250, 204, 21, 0.4);
+      cursor: pointer;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+
+    .celebrate-btn span { position: relative; z-index: 2; }
+
+    .celebrate-btn:after {
+      position: absolute;
+      content: "";
+      top: 0; left: 0;
+      width: 0; height: 100%;
+      background: linear-gradient(45deg, #fbbf24, #f97316);
+      transition: all .4s ease-in-out;
+      z-index: 1;
+    }
+
+    .celebrate-btn:hover {
+      color: #4b0303; transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(251, 191, 36, 0.8), 0 0 40px rgba(249, 115, 22, 0.6);
+    }
+    .celebrate-btn:hover:after { width: 100%; }
+
+    @keyframes textGlow {
+      from { text-shadow: 0 0 10px #fbbf24, 0 0 20px #fbbf24; }
+      to { text-shadow: 0 0 20px #fde68a, 0 0 40px #fbbf24; }
+    }
+
+    /* Curtain */
+    .curtain {
+      position: fixed;
+      width: 50%;
+      height: 100%;
+      top: 0;
+      background: linear-gradient(135deg, #0c0101 0%, #e869be 50%, #0c0101 100%);
+      z-index: 999;
+      opacity: 0.98;
+      box-shadow: inset 0 0 50px rgb(49, 48, 48);
+    }
+    .curtain.left { left: 0; transform: translateX(-100%) skewY(3deg); }
+    .curtain.right { right: 0; transform: translateX(100%) skewY(-3deg); }
+
+    .curtain.active.left { animation: curtainLeft 2.8s cubic-bezier(0.77, 0, 0.175, 1) forwards; }
+    .curtain.active.right { animation: curtainRight 2.8s cubic-bezier(0.77, 0, 0.175, 1) forwards; }
+
+    @keyframes curtainLeft {
+      0% { transform: translateX(-100%) skewY(3deg); }
+      30% { transform: translateX(0) skewY(0deg); }
+      70% { transform: translateX(0) skewY(0deg) scaleY(1.05); }
+      100% { transform: translateX(-100%) skewY(3deg); }
+    }
+    @keyframes curtainRight {
+      0% { transform: translateX(100%) skewY(-3deg); }
+      30% { transform: translateX(0) skewY(0deg); }
+      70% { transform: translateX(0) skewY(0deg) scaleY(1.05); }
+      100% { transform: translateX(100%) skewY(-3deg); }
+    }
+
+    /* Creative Curtain Text */
+    .curtain-text {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      font-size: 4rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #fbbf24, #f97316, #fbbf24);
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(251,191,36,0.8), 0 0 40px rgba(249,115,22,0.6);
+      opacity: 0;
+      z-index: 2000;
+    }
+    .curtain-text.show {
+      animation: textPop 3s ease forwards, glowPulse 3s infinite alternate;
+    }
+
+    @keyframes textPop {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5) rotate(-10deg); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2) rotate(5deg); }
+      100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    @keyframes glowPulse {
+      from { text-shadow: 0 0 15px #fbbf24, 0 0 30px #f97316; }
+      to { text-shadow: 0 0 30px #facc15, 0 0 60px #f97316; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Curtains -->
+  <div class="curtain left" id="curtainLeft"></div>
+  <div class="curtain right" id="curtainRight"></div>
+
+  <!-- Curtain Text -->
+  <div class="curtain-text" id="curtainText"></div>
+
+  <div class="container">
+    <!-- Puzzle -->
+    <div class="photo">
+      <div class="reveal" id="reveal"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <img src="images/logo.png" alt="PUP Logo" class="logo">
+      <h2>Congratulations!</h2>
+      <h2>Yishin Anne T. Marbasan</h2>
+      <p>
+        Bachelor of Science in Tourism Management<br>
+        Batch 2025</br>
+        <strong>Magna Cum Laude</strong>
+      </p>
+      <h2>I'm so proud of you!</h2>
+      <button class="celebrate-btn" onclick="launchLanding()"><span>Celebrate</span></button>
+    </div>
+  </div>
+
+  <!-- Confetti JS -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    // Puzzle tiles
+    const reveal = document.getElementById("reveal");
+    let delay = 0;
+    const size = 99; // adjust kung kailangan para bumagay sa bagong 450px
+    for (let row = 0; row < 14; row++) {
+      for (let col = 0; col < 14; col++) {
+        const tile = document.createElement("div");
+        tile.className = "tile";
+        tile.style.width = size + "px";
+        tile.style.height = size + "px";
+        tile.style.backgroundPosition = `-${col*size}px -${row*size}px`;
+        tile.style.top = `${row*size}px`;
+        tile.style.left = `${col*size}px`;
+        tile.style.setProperty("--x", `${Math.random()*1000-500}px`);
+        tile.style.setProperty("--y", `${Math.random()*1000-500}px`);
+        tile.style.setProperty("--r", `${Math.random()*720-360}deg`);
+        tile.style.animationDelay = `${delay}s`;
+        reveal.appendChild(tile);
+        delay += 0.005;
+      }
+    }
+
+    function launchLanding() {
+      document.getElementById("curtainLeft").classList.add("active");
+      document.getElementById("curtainRight").classList.add("active");
+      document.getElementById("curtainText").classList.add("show");
+
+      setTimeout(() => {
+        confetti({ particleCount: 400, spread: 180, origin: { y: 0.6 } });
+      }, 1200);
+
+      setTimeout(() => {
+        window.location.href = "landing.html"; 
+      }, 2800);
+    }
+  </script>
+</body>
+</html>

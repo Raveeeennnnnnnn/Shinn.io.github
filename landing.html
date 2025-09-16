@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Celebrate!</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #c6afd8, #c94084);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    h1 { font-size: 3rem; margin-bottom: 1rem; }
+    p  { font-size: 1.5rem; margin-bottom: 2rem; }
+
+    /* Back Button (Left) */
+    .back-btn {
+      position: fixed; top: 20px; left: 20px;
+      padding: 0.6rem 1.2rem; border-radius: 50px;
+      background: linear-gradient(45deg, #dd8fc3, #cf8ec4);
+      color: white; font-weight: bold; border: none;
+      cursor: pointer; box-shadow: 0 0 15px rgba(207,152,206,0.6);
+      overflow: hidden; z-index: 1000;
+    }
+    .back-btn::before {
+      content: ""; position: absolute; top: 0; left: -100%;
+      width: 100%; height: 100%; background: rgba(255,255,255,0.3);
+      transform: skewX(-45deg); transition: left 0.5s;
+    }
+    .back-btn:hover::before { left: 200%; }
+    .back-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(208,6,212,0.8); }
+
+    /* Birthday Celebration Button (Right) */
+    .birthday-btn {
+      position: fixed; top: 20px; right: 20px;
+      padding: 0.6rem 1.2rem; border-radius: 50px;
+      background: linear-gradient(45deg, #c5729c, #fecb4a);
+      color: white; font-weight: bold; border: none;
+      cursor: pointer; box-shadow: 0 0 15px rgba(255,193,7,0.6);
+      overflow: hidden; z-index: 1000;
+    }
+    .birthday-btn::before {
+      content: ""; position: absolute; top: 0; left: -100%;
+      width: 100%; height: 100%; background: rgba(255,255,255,0.3);
+      transform: skewX(-45deg); transition: left 0.5s;
+    }
+    .birthday-btn:hover::before { left: 200%; }
+    .birthday-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(217, 144, 214, 0.9); }
+
+    /* Gallery (3 images per row) */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px; max-width: 1000px; width: 100%; margin-top: 20px;
+    }
+    .gallery img {
+      width: 100%; height: 400px; object-fit: cover;
+      border-radius: 15px; box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px #e9e7e0, 0 0 50px #fbbf24, 0 0 80px #fde68a;
+    }
+
+    /* Lyrics + Video */
+    .lyrics-container {
+      margin-top: 20px; max-width: 1000px;
+      text-align: center; width: 100%;
+    }
+    .lyrics-container h2 {
+      margin-bottom: 15px; font-size: 2rem; color: #e5e3d3;
+    }
+    .video-frame {
+      border-radius: 30px; overflow: hidden;
+      box-shadow: 0 0 60px rgba(205,188,197,0.9);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      max-width: 800px; margin: auto;
+    }
+    .video-frame:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 30px #e9e7e0, 0 0 60px #fde68a, 0 0 100px #fde68a;
+    }
+    video, iframe {
+      width: 100%; height: 450px; border-radius: 30px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Back button (left) -->
+  <button class="back-btn" onclick="goBack()">Back</button>
+
+  <!-- Birthday Celebration button (right) -->
+  <button class="birthday-btn" onclick="goBirthday()">Birthday</button>
+
+<div class="celebrate-text">
+  <h1>Let’s Celebrate!</h1>
+  <p>Cheers to your success and bright future ahead!🥂</p>
+</div>
+
+<style>
+  .celebrate-text h1 {
+    font-size: 3rem;
+    color: #bf2b5d;
+    animation: bounceIn 2s ease forwards;
+  }
+
+  .celebrate-text p {
+    font-size: 1.5rem;
+    color: #c04180;
+    margin-top: 10px;
+    opacity: 0;
+    animation: fadeIn 2.5s ease forwards;
+    animation-delay: 1.5s; /* Lalabas after yung h1 */
+  }
+
+  /* 🎉 Bounce effect para sa h1 */
+  @keyframes bounceIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    60% { transform: scale(1.2); opacity: 1; }
+    80% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+  }
+
+  /* ✨ Fade in para sa paragraph */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+
+  <!-- Gallery with 3 top, 3 bottom -->
+  <div class="gallery">
+    <img src="images/pic1.jpg">
+    <img src="images/pic2.jpg">
+    <img src="images/pic4.jpg">
+    <img src="images/pic3.jpg">
+    <img src="images/pic5.jpg">
+    <img src="images/pic6.jpg">
+  </div>
+
+  <div class="lyrics-container">
+    <h2 class="song-title">🎶 Saranggola – Ben&Ben 🌤️</h2>
+
+<style>
+  .song-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Dancing Script", cursive;
+    background: linear-gradient(90deg, #6dd5fa, #ff758c, #fad0c4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: float 3s ease-in-out infinite, glow 4s ease-in-out infinite alternate;
+    margin: 20px 0;
+    letter-spacing: 2px;
+  }
+
+  /* ☁️ Floating effect (parang saranggola vibe) */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* ✨ Soft glow effect */
+  @keyframes glow {
+    0% { text-shadow: 0 0 8px #f8f8f9; }
+    50% { text-shadow: 0 0 15px #ff758c; }
+    100% { text-shadow: 0 0 10px #fad0c4; }
+  }
+</style>
+
+    <div class="video-frame" id="videoFrame">
+      <video id="song" controls autoplay muted loop onerror="loadYouTube()">
+        <source src="\images\Ben&Ben - Saranggola _ Official Performance Video (1).mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <script>
+    function goBack() {
+      window.location.href = "index.html";
+    }
+    function goBirthday() {
+      window.location.href = "birthday.html"; // 👉 landing page for Birthday
+    }
+    function loadYouTube() {
+      const frame = document.getElementById("videoFrame");
+      frame.innerHTML = `
+        <iframe
+          src="https://www.youtube.com/embed/eTQS39ufnCM?autoplay=1&mute=1"
+          title="Saranggola – Ben&Ben Official Lyric Video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      `;
+    }
+  </script>
+</body>
+</html>
